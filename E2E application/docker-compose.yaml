@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  test-db:
+    container_name: test-db
+    image: postgres:13.1
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=test
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=toor
+    ports:
+      - 5432:5432
+
+  test-api:
+    container_name: test-api
+    build:
+      context: ./Server
+    depends_on:
+      - test-db
+    environment:
+      - NODE_ENV=test
+      - PORT=8080
+      - DB_MIGRATE=TRUE
+      - DB_HOST=test-db
+      - DATABASE=test
+      - DB_USER=root
+      - DB_PASSWORD=toor
+    volumes:
+      - ./Server:/home/node:delegated
+      - /home/node/node_modules
+    ports:
+      - 8080:8080
+
+  test-web:
+    container_name: test-web
+    build:
+      context: ./web-portal
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./web-portal:/usr/src/
+      - /usr/src/node_modules
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      - PORT=3000
+      - CHOKIDAR_USEPOLLING=true # for hot-reloading
+    command: ["yarn", "start"]

@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+E2E application/data
+E2E application/docker-entrypoint.sh

@@ -68,6 +68,8 @@ To run the program
 $ cd coding-test/Problem Solving
 $ npm install
 ```
+The file should have column names which are provide in the  sample file test.csv.
+
 To run the application
 ```
 $ node index.js

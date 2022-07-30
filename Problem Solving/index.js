@@ -84,7 +84,7 @@ problemSolving = async (orders, fileName) => {
 }
 
 
-module.exports = ProblemSolving;
+module.exports = problemSolving;
 
 getInputFile = async () => {
   console.log('Please enter the filename');

@@ -16,27 +16,22 @@ const readLineAsync = () => {
   });
 };
 
-ConvertCsvToJson = (csv) => {
-  const ordersCSV = csv.replace(/\r\n/g, ",");
-
-  const splitOrders = ordersCSV.split(",")
+convertCsvToJson = (csv) => {
+  
+  const cleanCSV = csv.replace(/\r/g, "");
+  const splitOrders = cleanCSV.split("\n")
+  
   const orders = [];
+  
+  for (let index = 0; index < splitOrders.length; index ++) {
+    const [id, area, name, quantity, brand] = splitOrders[index].split(',');
 
-  for (let index = 0; index < splitOrders.length; index += 5) {
-    const order = {}
-
-    order.id = splitOrders[index]
-    order.area = splitOrders[index + 1]
-    order.name = splitOrders[index + 2]
-    order.quantity = splitOrders[index + 3]
-    order.brand = splitOrders[index + 4]
-
-    orders.push(order);
+    orders.push({ id, area, name, quantity, brand });
   }
   return orders;
 }
 
-ProblemSolving = async (orders, fileName) => {
+problemSolving = async (orders, fileName) => {
 
   const noOfOrders = orders.length;
 
@@ -91,15 +86,15 @@ ProblemSolving = async (orders, fileName) => {
 
 module.exports = ProblemSolving;
 
-GetInputFile = async () => {
+getInputFile = async () => {
   console.log('Please enter the filename');
   const fileName = await readLineAsync();
 
   const csv = await fs.readFileSync(`${fileName}.csv`, "utf8");
 
-  const orders = ConvertCsvToJson(csv);
+  const orders = convertCsvToJson(csv);
 
-  ProblemSolving(orders, fileName);
+  problemSolving(orders, fileName);
 }
 
-GetInputFile();
+getInputFile();

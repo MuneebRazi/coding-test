@@ -97,12 +97,12 @@ const CreateUser = (props) => {
           </div>
           <div style={{ display: "flex", flex: "row", padding: "5px" }}>
             <label htmlFor="email">Email</label>
-          <input type="text" autocomplete="false" onChange={handleChange} style={{ marginLeft: "49px" }} value={user.email} name="email" id="email"  placeholder="Email" />
+          <input type="text" autoComplete="false" onChange={handleChange} style={{ marginLeft: "49px" }} value={user.email} name="email" id="email"  placeholder="Email" />
           </div>
           { user.id === undefined ? (
             <div style={{ display: "flex", flex: "row", padding: "5px" }}>
               <label htmlFor="password">password</label>
-              <input type="password" autocomplete="false" onChange={handleChange} style={{ marginLeft: "20px" }} name="password" id="password" placeholder="Password" />
+              <input type="password" autoComplete="false" onChange={handleChange} style={{ marginLeft: "20px" }} name="password" id="password" placeholder="Password" />
             </div>
           ) : (
             <div>
@@ -120,12 +120,12 @@ const CreateUser = (props) => {
           }
           {
             user.id === undefined ? (
-              <button type="button" onClick={handleSubmit}>Create</button>
+            <button style={{ margin: "4px" }} type="button" onClick={handleSubmit}>Create</button>
             ):(
-              <button type="button" onClick={handleSubmitUpdate}>Update</button>
+              <button style={{ margin: "4px" }} type="button" onClick={handleSubmitUpdate}>Update</button>
             )
           }
-          <button type="button" onClick={handleReset}>Reset</button>
+          <button style={{margin:"4px"}} type="button" onClick={handleReset}>Reset</button>
           
         </form>
       <ToastContainer/>

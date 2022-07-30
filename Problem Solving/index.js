@@ -1,4 +1,3 @@
-const csvtojson = require('csvtojson');
 const readline = require('readline');
 const jsontocsv = require('json-2-csv');
 const fs = require('fs');
@@ -17,18 +16,28 @@ const readLineAsync = () => {
   });
 };
 
-GetInputFile = async () => {
-  console.log('Plesc enter filename with ext');
-  const fileName = await readLineAsync();
+ConvertCsvToJson = (csv) => {
+  const ordersCSV = csv.replace(/\r\n/g, ",");
 
-  const orders = await csvtojson().fromFile(`${fileName}`)
+  const splitOrders = ordersCSV.split(",")
+  const orders = [];
 
-  ProblemSolving(orders, fileName);
+  for (let index = 0; index < splitOrders.length; index += 5) {
+    const order = {}
+
+    order.id = splitOrders[index]
+    order.area = splitOrders[index + 1]
+    order.name = splitOrders[index + 2]
+    order.quantity = splitOrders[index + 3]
+    order.brand = splitOrders[index + 4]
+
+    orders.push(order);
+  }
+  return orders;
 }
 
 ProblemSolving = async (orders, fileName) => {
 
-  
   const noOfOrders = orders.length;
 
   const file0Output = [];
@@ -75,10 +84,22 @@ ProblemSolving = async (orders, fileName) => {
   const file0 = await jsontocsv.json2csvAsync(file0Output);
   const file1 = await jsontocsv.json2csvAsync(file1Output);
   
-  fs.writeFileSync(`0_${fileName}`, file0);
-  fs.writeFileSync(`1_${fileName}`, file1);
+  fs.writeFileSync(`0_${fileName}.csv`, file0);
+  fs.writeFileSync(`1_${fileName}.csv`, file1);
 }
 
 
 module.exports = ProblemSolving;
+
+GetInputFile = async () => {
+  console.log('Please enter the filename');
+  const fileName = await readLineAsync();
+
+  const csv = await fs.readFileSync(`${fileName}.csv`, "utf8");
+
+  const orders = ConvertCsvToJson(csv);
+
+  ProblemSolving(orders, fileName);
+}
+
 GetInputFile();

@@ -21,7 +21,7 @@ services:
       - test-db
     environment:
       - NODE_ENV=test
-      - PORT=8080
+      - PORT=7000
       - DB_MIGRATE=TRUE
       - DB_HOST=test-db
       - DATABASE=test
@@ -31,7 +31,7 @@ services:
       - ./Server:/home/node:delegated
       - /home/node/node_modules
     ports:
-      - 8080:8080
+      - 7000:7000
 
   test-web:
     container_name: test-web
@@ -43,8 +43,8 @@ services:
       - ./web-portal:/usr/src/
       - /usr/src/node_modules
     ports:
-      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:8080:8080"
     environment:
-      - PORT=3000
+      - PORT=8080
       - CHOKIDAR_USEPOLLING=true # for hot-reloading
     command: ["yarn", "start"]

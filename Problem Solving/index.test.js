@@ -35,7 +35,7 @@ test('should return the same result as in Example', async () => {
     }
   ];
   try {
-    await ProblemSolving(orders, 'input_example.csv');
+    await ProblemSolving(orders, 'input_example');
 
     const file0 = await csvtojson().fromFile('0_input_example.csv');
     const file1 = await csvtojson().fromFile('1_input_example.csv');
@@ -90,7 +90,7 @@ test('should return the same result as in Sample', async () => {
     }
   ]
   try {
-    await ProblemSolving(orders, 'order_log00.csv');
+    await ProblemSolving(orders, 'order_log00');
     const file0 = await csvtojson().fromFile('0_order_log00.csv');
     const file1 = await csvtojson().fromFile('1_order_log00.csv');
     

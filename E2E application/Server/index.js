@@ -9,7 +9,7 @@ require('dotenv').config();
 
 app.use((req, res, next) => {
   var allowedOrigins = [
-    "http://localhost:3000",
+    "http://localhost:8080",
   ];
   var origin = req.headers.origin;
   if (allowedOrigins.indexOf(origin) > -1) {

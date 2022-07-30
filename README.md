@@ -22,9 +22,15 @@ To run the program
  ```
  $ docker exec -it test-api npx knex migrate:latest
  ```
-  * Next you will have to open a browser and type this URL ‘localhost:3000’ for the web portal.
-  * To access server APIs type ‘localhost:8080’.
-  * The web portal will contain a Form and a Table (will show up after the first user is inserted). This web portal performs all CRUD tasks.
+  * Next you will have to open a browser and enter the URL for the web portal.
+  ```
+  http://localhost:8080
+  ```
+  * To access server APIs enter 
+  ```
+  http://localhost:7000
+  ```
+  * The web portal will contain a Form and a Table (the table will show up after the first user is inserted). This web portal performs all CRUD tasks.
 
 ### Structure:
 
@@ -68,12 +74,13 @@ To run the program
 $ cd coding-test/Problem Solving
 $ npm install
 ```
-The file should have column names which are provide in the  sample file test.csv.
+The file should be a CSV and should be similar to the exmaple given in the task.
 
 To run the application
 ```
 $ node index.js
 ```
+Enter the file name as asked by the system.
 
 The program will create two file which will contain the result.
 

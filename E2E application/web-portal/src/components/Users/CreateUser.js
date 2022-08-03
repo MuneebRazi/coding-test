@@ -13,7 +13,7 @@ const CreateUser = (props) => {
     createUser(user)
       .then(response => {
         if (response.data.success) {
-          toast(`${response.data.message}`);
+          toast(`User Created`);
           setUser({
             id: undefined,
             fullName: "",
@@ -24,7 +24,7 @@ const CreateUser = (props) => {
             password: ""
           })
         } else {
-          toast(`${response.data.message}`);
+          toast(`User Creation Failed`);
         }
       });
   }
@@ -32,7 +32,7 @@ const CreateUser = (props) => {
     updateUser(user)
       .then(response => {
         if (response.data.success) {
-          toast(`${response.data.message}`);
+          toast(`User Updated`);
           setUser({
             id: undefined,
             fullName: "",
@@ -43,7 +43,7 @@ const CreateUser = (props) => {
             password: ""
           })
         } else {
-          toast(`${response.data.message}`);
+          toast(`User Update failed`);
         }
       });
   }

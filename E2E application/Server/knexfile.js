@@ -2,11 +2,11 @@ module.exports = {
   test: {
     client: 'pg',
     connection: {
-      port: process.env.DB_PORT || 5432,
-      host: process.env.DB_HOST || 'test-db',
-      database: process.env.DATABASE || 'test',
-      user: process.env.USER || 'root',
-      password: process.env.DB_PASSWORD || 'toor',
+      port: process.env.DB_PORT,
+      host: process.env.DB_HOST,
+      database: process.env.DATABASE,
+      user: process.env.USER,
+      password: process.env.DB_PASSWORD,
     },
     pool: {
       min: 2,

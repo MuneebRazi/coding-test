@@ -34,9 +34,9 @@ const UserList = (props) => {
   const handleDelete = (user) => {
     deleteUser(user.id).then(response => {
       if (response.data.success) {
-        toast(`${response.data.message}`);
+        toast(`Deleted Successfully`);
       } else {
-        toast(`${response.data.message}`);
+        toast(`Deletion Failed`);
       }
     });
   }
